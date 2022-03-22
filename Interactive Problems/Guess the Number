@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int query(int middle)
+{
+    cout<<middle<<endl;
+    
+    string res;
+    cin>>res;
+    
+    if(res=="<")
+    {
+        return 1;
+    }
+    
+    else if(res==">="){
+        return 2;
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    
+    
+    int l=1, r=1e6;
+    int ans = 0;
+    while(l<=r)
+    {
+        int middle = (l+r)/2;
+        
+        if(query(middle)==1)
+        {
+            r = middle-1;
+        }
+        
+        else{
+            ans = middle;
+            l = middle+1;
+        }
+        
+    }
+    
+    cout<<"! "<<ans<<endl;
+    return 0;
+}
