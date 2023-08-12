@@ -1,3 +1,6 @@
+// If we only iterate on the place of 'A', we can get the number of 'Q' before and after it using prefix sums,
+// and it leads to O(n) solution.
+
 #include <bits/stdc++.h>
 using namespace std;
 
