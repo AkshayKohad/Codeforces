@@ -1,0 +1,85 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    
+    int k = n-1;
+    
+    vector<int>adj[n];
+    
+    while(k--)
+    {
+        int x,y;
+        cin>>x>>y;
+        
+        adj[x-1].push_back(y-1);
+        adj[y-1].push_back(x-1);
+    }
+
+   queue<int>pattern;
+   
+   for(int i=0;i<n;i++)
+   {
+       int val;
+       cin>>val;
+       pattern.push(val-1);
+   }
+   
+   int first = pattern.front();
+   pattern.pop();
+   
+   if(first!=0)
+   {
+       cout<<"No";
+       return 0;
+   }
+   
+   vector<int>visited(n+1,0);
+    queue<int>q;
+    q.push(first);
+    
+    visited[first]=1;
+    
+    while(q.empty()==false)
+    {
+        int cur = q.front();
+        q.pop();
+        unordered_set<int>s;
+        for(auto u:adj[cur])
+        {
+            if(visited[u]==1)
+            continue;
+            
+             s.insert(u);
+            
+             
+        }
+        
+         int sz = s.size();
+        
+        while(sz--)
+        {
+            int v = pattern.front();
+            
+            if(s.find(v)==s.end())
+            {
+                
+                cout<<"No";
+                return 0;
+            }
+            s.erase(v);
+              visited[v] = 1;
+             q.push(v);
+            pattern.pop();
+        }
+       s.clear();
+    }
+    
+    cout<<"Yes";
+    return 0;
+    
+}
+
