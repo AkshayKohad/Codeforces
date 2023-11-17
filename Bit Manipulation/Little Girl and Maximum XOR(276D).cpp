@@ -1,3 +1,5 @@
+//approach 1
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -19,4 +21,31 @@ int main()
     cout<<result-1;
 
     return 0;
+   
+}
+
+
+//approach 2
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long 
+
+int main()
+{
+  ll l,r;
+  cin>>l>>r;
+  
+  ll res = l^r;
+  
+  ll position = 0;
+  
+  while(res)
+  {
+      res = res>>1;
+      position++;
+  }
+  ll a = 2;
+  cout<<(1ll<<position)-1<<endl;
 }
