@@ -1,4 +1,4 @@
-
+// Approach 1
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -94,4 +94,111 @@ int main()
      
  }
 	return 0;
+}
+
+
+
+// Approach 2
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+
+void build_tree(ll s,ll e,ll index,vector<ll>&segment_tree,vector<ll>&a,ll level,ll &val)
+{
+    if(s==e)
+    {
+        segment_tree[index] = a[s];
+        return;
+    }
+    
+    ll mid = (s+e)/2;
+    
+     build_tree(s,mid,2*index,segment_tree,a,level+1,val);
+    
+     build_tree(mid+1,e,2*index+1,segment_tree,a,level+1,val);
+     
+     ll left = segment_tree[2*index];
+     ll right = segment_tree[2*index+1];
+    
+    if(level%2==val)
+    {
+        segment_tree[index] = left|right;
+    }
+    else{
+        segment_tree[index] = left^right;
+    }
+    
+    return;
+    
+}
+
+void update(ll s,ll e,ll index,vector<ll>&segment_tree,ll &b,ll i,ll level,ll &val)
+{
+    if(i>e || i<s)
+    return;
+    
+    if(s==e)
+    {
+        segment_tree[index] = b;
+      //  cout<<level<<endl;
+        return;
+    }
+    
+    ll mid = (s+e)/2;
+    
+     update(s,mid,2*index,segment_tree,b,i,level+1,val);
+    
+     update(mid+1,e,2*index+1,segment_tree,b,i,level+1,val);
+      
+     
+     ll left = segment_tree[2*index];
+     ll right = segment_tree[2*index+1];
+    
+    if(level%2==val)
+    {
+        segment_tree[index] = left|right;
+    }
+    else{
+        segment_tree[index] = left^right;
+    } 
+     
+      
+}
+int main()
+{
+    ll n;
+    cin>>n;
+    
+    ll m;
+    cin>>m;
+    
+    ll res_size = pow(2,n);
+    
+    vector<ll>a(res_size);
+    
+    for(ll i=0;i<res_size;i++)
+    cin>>a[i];
+    
+    ll val = 0;
+    if(n%2==0)
+    {
+        val=1;
+    }
+    vector<ll>segment_tree(4*res_size+1,0);
+    
+    build_tree(0,res_size-1,1,segment_tree,a,0,val);
+    
+    while(m--)
+    {
+        ll p,b;
+        cin>>p>>b;
+        
+        a[p-1] = b;
+        
+        update(0,res_size-1,1,segment_tree,b,p-1,0,val);
+        
+        cout<<segment_tree[1]<<endl;
+    }
 }
