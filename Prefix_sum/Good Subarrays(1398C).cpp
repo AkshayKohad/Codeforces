@@ -1,3 +1,9 @@
+// We use zero indexing in this solution. We also use half-closed interval (so subarray [l,r] is al,al+1,…,ar−1).
+// Let's precalculate the array p(prefix_sum), where pi=∑j=0i−1aj (so px if sum of first x elements of a).
+// Then subarray [l,r] is good if pr−pl=r−l, so pr−r=pl−l.
+// Thus, we have to group all prefix by value pi−i for i from 0 to n. And if the have x prefix with same value of pi−i then we have to add x(x−1)2 to the answer.
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
