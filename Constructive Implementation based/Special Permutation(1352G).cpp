@@ -1,3 +1,7 @@
+If n<4 then there is no answer. You can do some handwork to be sure. Otherwise, the answer exists and there is one simple way to construct it: 
+firstly, let's put all odd integers into the answer in decreasing order, then put 4, 2, and all other even numbers in increasing order.
+To test that it always works, you can run some kind of checker locally (you can check all 1000 tests very fast, in less than one second, this may be very helpful sometimes).
+
 #include <bits/stdc++.h>
 using namespace std;
 
