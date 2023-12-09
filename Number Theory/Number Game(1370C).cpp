@@ -1,3 +1,25 @@
+Key Idea:
+
+FastestFinger wins for n=1 , n=2x where (x>1) and n=2⋅p where p is a prime ≥3 else Ashishgup wins.
+
+Solution:
+
+Let's analyse the problem for the following 3 cases:
+Case 1: n is odd
+Here Ashishgup can divide n by itself, since it is odd and hence nn=1, and FastestFinger loses. Here n=1 is an exception.
+
+Case 2: n is even and has no odd divisors greater than 1 Here n is of the form 2x. 
+As n has no odd divisors greater than 1, Ashishgup is forced to subtract it by 1 making n odd.
+So if x>1, FastestFinger wins. For x=1, n−1 is equal to 1, so Ashishgup wins.
+
+Case 3: n is even and has odd divisors
+If n is divisible by 4 then Ashishgup can divide n by its largest odd factor after which n becomes of the form 2x where x>1, so Ashishgup wins.
+Otherwise n must be of the form 2⋅p, where p is odd. If p is prime, Ashishgup loses since he can either reduce n
+by 1 or divide it by p both of which would be losing for him. If p is not prime then p must be of the form p1⋅p2 where p1 is prime and p2 is any odd number >1.
+Ashishgup can win by dividing n by p2.
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
